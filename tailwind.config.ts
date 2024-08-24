@@ -19,13 +19,16 @@ const config = {
     },
     extend: {
       colors: {
+        background: {
+          DEFAULT: '#ffffff', // Light mode background color
+          dark: '#1a1a1a',    // Custom dark mode background color (replace with your desired color)
+        },
         color1: "#FF1B1C",
         color2: "#FF7F11",
         color3: "#BEB7A4",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
           DEFAULT: "hsl(var(--primary))",

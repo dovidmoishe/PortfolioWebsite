@@ -10,4 +10,27 @@ const imagesForHero = [
     David, 
     David1
 ];
-export { titleWords, imagesForHero };
+const navItems = [
+    {
+      name: "Home",
+      link: "/",
+    },
+    {
+      name: "About",
+      link: "/about",
+    },
+    {
+        name: "Skills",
+        link: "/skills"
+    },
+    {
+        name: "Projects",
+        link: "/projects"
+    },
+
+    {
+      name: "Contact",
+      link: "/contact",
+    },
+  ];
+export { titleWords,imagesForHero, navItems };
