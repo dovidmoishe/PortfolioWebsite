@@ -38,7 +38,7 @@ const About = (props: Props) => {
         About Me
       </p>
 
-      <div className="flex flex-col lg:flex-row justify-between items-start m-5 gap-10 mt-7">
+      <div className="flex flex-col lg:flex-row justify-between items-center m-5 gap-10 mt-7">
         <div className="w-full lg:w-1/2 space-y-6">
           <p className="text-lg font-normal leading-relaxed">
             I&apos;m a passionate software engineer and aspiring start-up founder

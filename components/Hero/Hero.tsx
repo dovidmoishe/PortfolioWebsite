@@ -37,7 +37,7 @@ const Hero = (props: Props) => {
           <TypewriterEffectSmooth words={nameText} />
           </div>
           <div className="text-2xl text-center md:text-left font-normal text-neutral-600 dark:text-neutral-400">
-            I'm a/an <FlipWords words={titleWords} />
+            I&apos;m a/an <FlipWords words={titleWords} />
           </div>
           <div className="flex items-center justify-center md:justify-start">
           <div className="flex items-center gap-2 mt-2 text-center">
