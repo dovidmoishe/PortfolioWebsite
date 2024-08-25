@@ -8,37 +8,54 @@ import { FaXTwitter } from "react-icons/fa6";
 import { FaWhatsapp } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { MdFileDownload } from "react-icons/md";
+import { TypewriterEffectSmooth } from "../ui/typewriter-effect";
+import { FaGithub } from "react-icons/fa6";
 
 type Props = {};
+
+
+const nameText = [
+  {
+    text: "David",
+    classname: "text-4xl sm:text-7xl font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 pt-8"
+  },
+  {
+    text: "Baiye",
+    classname: "text-4xl sm:text-7xl font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 pt-8"
+  },
+];
 
 const Hero = (props: Props) => {
   return (
     <div className="h-[50rem] w-full dark:bg-black bg-white  dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative flex items-center justify-center">
       {/* Radial gradient for the container to give a faded look */}
       <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
-      <div className="flex md:gap-28 flex-col md:flex-row md:justify-between">
+      <div className="flex md:gap-28 flex-col md:flex-row md:justify-between text-center">
         {/* Change the text to say "Welcome to our website!" */}
-        <div className="flex flex-col gap-3">
-          <p className="text-4xl sm:text-7xl font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 pt-8">
-            David Baiye
-          </p>
-          <div className="text-2xl font-normal text-neutral-600 dark:text-neutral-400">
+        <div className="flex flex-col gap-3 text-center md:text-left">
+          <div className="text-4xl sm:text-7xl font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 pt-8">
+          <TypewriterEffectSmooth words={nameText} />
+          </div>
+          <div className="text-2xl text-center md:text-left font-normal text-neutral-600 dark:text-neutral-400">
             I'm a/an <FlipWords words={titleWords} />
           </div>
-          <div className="flex items-center gap-2 mt-2">
+          <div className="flex items-center justify-center md:justify-start">
+          <div className="flex items-center gap-2 mt-2 text-center">
             <p className="text-md">Find me on</p>
             <div className="flex items-center gap-2 text-lg">
               <FaXTwitter size={25} className="cursor-pointer" />
               <FaWhatsapp size={25} className="cursor-pointer" />
               <FaInstagram size={25} className="cursor-pointer" />
+              <FaGithub size={25} className="cursor-pointer" />
             </div>
           </div>
-          <div className="w-52 mt-4">
+          </div>
+          <div className="w-52 mt-4 text-center">
             <button className="p-[3px] relative w-auto">
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
               <div className="px-8 py-2  bg-black rounded-[6px]  relative group transition duration-200 text-white hover:bg-transparent">
                 <div className="flex items-center gap-3">
-                  <MdFileDownload className="text-white"/>
+                  <MdFileDownload className="text-white" />
                   Download CV
                 </div>
               </div>
@@ -46,17 +63,23 @@ const Hero = (props: Props) => {
           </div>
         </div>
 
-        <ImagesSlider images={imagesForHero} />
+        <div className="mt-10 md:mt-0">
+          <ImagesSlider images={imagesForHero} />
+        </div>
       </div>
     </div>
+  
   );
 };
 interface ImagesSliderProps {
-  images: StaticImageData[];
+  images: string[];
   interval?: number; // Interval for the image fade transition in milliseconds
 }
 
-const ImagesSlider: React.FC<ImagesSliderProps> = ({ images, interval = 6000 }) => {
+const ImagesSlider: React.FC<ImagesSliderProps> = ({
+  images,
+  interval = 6000,
+}) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
@@ -79,7 +102,7 @@ const ImagesSlider: React.FC<ImagesSliderProps> = ({ images, interval = 6000 }) 
           width={300}
           height={300}
           className={`absolute top-0 left-0 w-full h-full object-cover rounded-xl transition-opacity duration-1000 ${
-            index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+            index === currentImageIndex ? "opacity-100" : "opacity-0"
           }`}
         />
       ))}
