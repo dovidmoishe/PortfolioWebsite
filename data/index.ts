@@ -1,3 +1,13 @@
+import javascript from "../public/icons/javascript.png";
+import expessjs from "../public/icons/express-js.png";
+import mongodb from "../public/icons/mongodb.png";
+import reactNative from "../public/icons/react-native.png";
+import tailwindcss from "../public/icons/tailwindcss.png";
+import nextjs from "../public/icons/nextjs.png";
+import typescript from "../public/icons/typescript.png";
+import antdesign from "../public/icons/antd.png";
+import rentals from "@/public/rentals.png"
+
 import { fetchSimpleIcons } from "react-icon-cloud";
 
 const titleWords = [
@@ -11,38 +21,26 @@ const imagesForHero = ["/DavidBaiye.jpg", "/DavidBaiye2.jpg"];
 
 const navItems = [
   { name: "Home", link: "/" },
-  { name: "About", link: "/about" },
-  { name: "Projects", link: "/projects" },
+  { name: "About", link: "#about" },
+  { name: "Projects", link: "#projects" },
   { name: "Contact", link: "/contact" },
 ];
-
-let icons:any = [];
-
-// const loadIcons = async () => {
-//   const iconList = ["mongodb", "react", "tailwindcss"];
-//   icons = await Promise.all(iconList.map((icon) => fetchSimpleIcons([{slugs: iconList}])));
-// };
 
 const projects = [
   {
     title: "Gloryous Decor Rentals website",
     des: "A website for a decor rental company",
-    img: "/gloryous.png",
-    iconLists: [], // This will be populated later
+    img: rentals,
+    url: "https://gloryousdecorentals.vercel.app",
+    iconLists: [typescript, tailwindcss, antdesign, nextjs, mongodb, expessjs], // This will be populated later
   },
   {
     title: "ui.aceternity.com",
     des: "A website for UI design",
-    img: "/ui.png",
+    url: "https://gloryousdecorentals.vercel.app",
+    img: rentals,
     iconLists: [], // This will be populated later
   },
 ];
-
-// Load icons when the file is imported
-// loadIcons().then(() => {
-//   projects.forEach((project, index) => {
-//     project.iconLists = icons; // Assign icons to projects
-//   });
-// });
 
 export { titleWords, imagesForHero, navItems, projects };

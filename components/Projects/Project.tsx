@@ -1,29 +1,40 @@
 import React from "react";
-import { FaLocationArrow } from "react-icons/fa6";
-import { projects } from "../../data";  // Import the data with icons
-import { PinContainer } from "../ui/3d-pin";
 import { StaticImageData } from "next/image";
-import Image from 'next/image'
+import Image from "next/image";
+import { projects } from "@/data";
+import {useRouter} from 'next/navigation'
+import router from "next/router";
+
 
 interface CardProps {
-  image: string;
+  image: StaticImageData;
   name: string;
   description: string;
   icons: StaticImageData[];
+  url: string;
   onButtonClick: () => void;
 }
 
-const Card: React.FC<CardProps> = ({ image, name, description, icons, onButtonClick }) => {
+
+const Card: React.FC<CardProps> = ({
+  image,
+  name,
+  description,
+  icons,
+  url,
+  onButtonClick,
+}) => {
+  const router = useRouter()
   return (
-    <div className="max-w-sm rounded-lg shadow-lg overflow-hidden bg-white">
-      <img src={image} alt={name} className="w-full h-48 object-cover" />
+    <div className="max-w-sm rounded-lg shadow-md overflow-hidden border border-gray-200 bg-white" id="projects">
+      <Image src={image} alt={name} className="w-full h-48 object-cover" />
       <div className="p-6">
-        <h2 className="text-xl font-bold mb-2">{name}</h2>
+        <h2 className="text-xl font-bold mb-2 text-gray-900">{name}</h2>
         <p className="text-gray-700 mb-4">{description}</p>
         <div className="flex justify-between items-center mt-4">
           <div className="flex items-center space-x-2">
             {icons.map((icon, i) => (
-              <Image src={icon} key={i} width={0} height={0} alt="icon" />
+              <Image src={icon} key={i} width={20} height={20} alt="icon" />
             ))}
           </div>
           <button
@@ -37,11 +48,27 @@ const Card: React.FC<CardProps> = ({ image, name, description, icons, onButtonCl
     </div>
   );
 };
+
 const Projects = () => {
   return (
-    <>
-    
-    </>
+    <div className=" p-8">
+      <p className="text-4xl sm:text-7xl font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-gray-700 to-gray-900 pt-8 text-center">
+        My Projects
+      </p>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-7">
+        {projects.map((product) => (
+          <Card
+            key={product.title}
+            name={product.title}
+            description={product.des}
+            image={product.img}
+            icons={product.iconLists}
+            onButtonClick={() => router.push(product.url)}
+            url=""
+          />
+        ))}
+      </div>
+    </div>
   );
 };
 
