@@ -2,9 +2,7 @@ import React from "react";
 import { StaticImageData } from "next/image";
 import Image from "next/image";
 import { projects } from "@/data";
-import {useRouter} from 'next/navigation'
-import router from "next/router";
-
+import { useRouter } from "next/navigation";
 
 interface CardProps {
   image: StaticImageData;
@@ -12,37 +10,43 @@ interface CardProps {
   description: string;
   icons: StaticImageData[];
   url: string;
-  onButtonClick: () => void;
 }
 
+const Card: React.FC<CardProps> = ({ image, name, description, icons, url }) => {
+  const router = useRouter();
 
-const Card: React.FC<CardProps> = ({
-  image,
-  name,
-  description,
-  icons,
-  url,
-  onButtonClick,
-}) => {
-  const router = useRouter()
   return (
-    <div className="max-w-sm rounded-lg shadow-md overflow-hidden border border-gray-200 bg-white" id="projects">
-      <Image src={image} alt={name} className="w-full h-48 object-cover" />
-      <div className="p-6">
-        <h2 className="text-xl font-bold mb-2 text-gray-900">{name}</h2>
-        <p className="text-gray-700 mb-4">{description}</p>
-        <div className="flex justify-between items-center mt-4">
-          <div className="flex items-center space-x-2">
-            {icons.map((icon, i) => (
-              <Image src={icon} key={i} width={20} height={20} alt="icon" />
-            ))}
-          </div>
+    <div
+      className="w-full sm:w-auto max-w-sm rounded-lg shadow-lg overflow-hidden border border-gray-200 bg-white transition-transform duration-300 hover:scale-105 hover:shadow-xl cursor-pointer"
+      onClick={() => router.push(url)}
+      aria-label={`Project: ${name}`}
+    >
+      <div className="relative">
+        <Image src={image} alt={name} className="w-full h-48 object-cover" />
+        <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 transition-opacity duration-300 hover:opacity-100">
           <button
-            onClick={onButtonClick}
             className="bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors"
+            onClick={(e) => {
+              e.stopPropagation();
+              router.push(url);
+            }}
           >
-            Check live site
+            Check Live Site
           </button>
+        </div>
+      </div>
+      <div className="p-6">
+        <h2 className="text-2xl font-bold mb-2 text-gray-900">{name}</h2>
+        <p className="text-gray-700 mb-4">{description}</p>
+        <div className="flex justify-start items-center gap-3 mt-4">
+          {icons.map((icon, i) => (
+            <div
+              key={i}
+              className="rounded-full border-2 border-gray-200 p-2 transition-transform duration-300 hover:scale-110"
+            >
+              <Image src={icon} width={30} height={30} alt={`icon ${i}`} />
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -51,20 +55,19 @@ const Card: React.FC<CardProps> = ({
 
 const Projects = () => {
   return (
-    <div className=" p-8">
-      <p className="text-4xl sm:text-7xl font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-gray-700 to-gray-900 pt-8 text-center">
+    <div className="p-8 bg-gray-50">
+      <h1 className="text-4xl sm:text-7xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-b from-gray-700 to-gray-900">
         My Projects
-      </p>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-7">
-        {projects.map((product) => (
+      </h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {projects.map((project) => (
           <Card
-            key={product.title}
-            name={product.title}
-            description={product.des}
-            image={product.img}
-            icons={product.iconLists}
-            onButtonClick={() => router.push(product.url)}
-            url=""
+            key={project.title}
+            name={project.title}
+            description={project.des}
+            image={project.img}
+            icons={project.iconLists}
+            url={project.url}
           />
         ))}
       </div>
