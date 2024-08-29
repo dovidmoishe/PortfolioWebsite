@@ -33,7 +33,7 @@ const Contact = () => {
             Get in Touch
           </h2>
           <p className="mt-2 text-sm text-gray-600">
-            I'd love to hear from you! Whether you have a question or just want to say hi.
+            I&lsquo;d love to hear from you! Whether you have a question or just want to say hi.
           </p>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
